@@ -43,4 +43,8 @@ describe('When everthing is OK', () => {
     // render(<App />); //using beforeEach
     screen.getByPlaceholderText('Example');
   });
+
+  test('should not find the role whatever', () => {
+    expect(screen.queryByRole('whatever')).toBeNull();
+  });
 });
