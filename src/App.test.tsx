@@ -11,6 +11,16 @@ describe('When everthing is OK', () => {
   test('should render Input label text and Input children', () => {
     render(<App />);
     screen.getByText('Input:');
-    expect(screen.getByText('Input:')).toBeInTheDocument();
+    screen.getByText(/Input/);
+    // expect(screen.getByText('Input:')).toBeInTheDocument();
+
+    // testing errors
+    let error;
+    try {
+      screen.getByText('Input');
+    } catch (err) {
+      error = err;
+    }
+    expect(error).toBeDefined();
   });
 });
