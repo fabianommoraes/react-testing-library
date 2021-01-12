@@ -23,4 +23,20 @@ describe('When everthing is OK', () => {
     }
     expect(error).toBeDefined();
   });
+
+  test('should select the input element by its role', () => {
+    render(<App />);
+    screen.getByRole('textbox');
+    // expect(screen.getByRole('textbox')).toBeInTheDocument();
+  });
+
+  test('should select a label element by its texts', () => {
+    render(<App />);
+    screen.getByLabelText('Input:');
+  });
+
+  test('should select input element by placeholder text', () => {
+    render(<App />);
+    screen.getByPlaceholderText('Example');
+  });
 });
