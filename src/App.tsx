@@ -1,7 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+interface User {
+  id: string;
+  name: string;
+}
+
+const getUser = (): Promise<User> => {
+  return Promise.resolve({ id: '1', name: 'Fabiano' });
+};
 
 const App: React.FC = () => {
   const [text, setText] = useState('');
+  const [user, setUser] = useState<User | null>(null);
+
+  const fetchUser = async () => {
+    const user = await getUser();
+    setUser(user);
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
@@ -9,6 +28,7 @@ const App: React.FC = () => {
 
   return (
     <div>
+      {user ? <p>Username: {user.name}</p> : null}
       <Input value={text} onChange={handleChange}>
         Input:
       </Input>
