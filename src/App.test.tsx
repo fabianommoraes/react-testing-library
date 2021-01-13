@@ -1,10 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
+import { getUser } from './get-user';
+import { mocked } from 'ts-jest/utils';
+
+jest.mock('./get-user.ts');
+const mockGetUser = mocked(getUser, true);
 
 describe('When everthing is OK', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     render(<App />);
+    await waitFor(() => expect(mockGetUser).toHaveBeenCalled());
   });
 
   test('should render the App component without crashing', () => {

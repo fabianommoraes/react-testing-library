@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-interface User {
-  id: string;
-  name: string;
-}
-
-const getUser = (): Promise<User> => {
-  return Promise.resolve({ id: '1', name: 'Fabiano' });
-};
+import { getUser, User } from './get-user';
 
 const App: React.FC = () => {
   const [text, setText] = useState('');
