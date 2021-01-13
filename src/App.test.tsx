@@ -54,3 +54,14 @@ describe('When everthing is OK', () => {
     expect(screen.queryByRole('whatever')).toBeNull();
   });
 });
+
+describe('When the component fetches tue user successfully', () => {
+  beforeEach(async () => {
+    mockGetUser.mockClear();
+  });
+
+  test('should call getUser once', async () => {
+    render(<App />);
+    await waitFor(() => expect(mockGetUser).toHaveBeenCalledTimes(1));
+  });
+});
