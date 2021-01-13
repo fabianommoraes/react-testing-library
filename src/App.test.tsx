@@ -68,9 +68,11 @@ describe('When the component fetches tue user successfully', () => {
   test('should render the username passed', async () => {
     const name = 'Moraes';
 
-    mockGetUser.mockImplementationOnce(() =>
-      Promise.resolve({ id: '1', name }),
-    );
+    // mockGetUser.mockImplementationOnce(() =>
+    //   Promise.resolve({ id: '1', name }),
+    // );
+    mockGetUser.mockResolvedValueOnce({ id: '1', name }); // same as above
+
     render(<App />);
     expect(screen.queryByText(/Username/)).toBeNull();
     expect(await screen.findByText(/Username/)).toBeInTheDocument();
