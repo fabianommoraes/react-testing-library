@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import { getUser } from './get-user';
 import { mocked } from 'ts-jest/utils';
@@ -55,7 +55,7 @@ describe('When everthing is OK', () => {
   });
 });
 
-describe('When the component fetches tue user successfully', () => {
+describe('When the component fetches the user successfully', () => {
   beforeEach(async () => {
     mockGetUser.mockClear();
   });
@@ -77,5 +77,20 @@ describe('When the component fetches tue user successfully', () => {
     expect(screen.queryByText(/Username/)).toBeNull();
     expect(await screen.findByText(/Username/)).toBeInTheDocument();
     expect(await screen.findByText(/name/)).toBeInTheDocument();
+  });
+});
+
+describe('When the user enters some text in the input element', () => {
+  test('should displaya the text in the screen', async () => {
+    render(<App />);
+    await waitFor(() => expect(mockGetUser).toHaveBeenCalled());
+
+    screen.getByText(/You typed: .../);
+
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: 'Fabiano' },
+    });
+
+    screen.getByText(/You typed: Fabiano/);
   });
 });
