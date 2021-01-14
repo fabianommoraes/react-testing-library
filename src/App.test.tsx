@@ -2,10 +2,10 @@ import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
-import { getUser } from './get-user';
 import { mocked } from 'ts-jest/utils';
+import { getUser } from './utils/get-user';
 
-jest.mock('./get-user.ts');
+jest.mock('./utils/get-user.ts');
 const mockGetUser = mocked(getUser, true);
 
 describe('When everthing is OK', () => {
@@ -82,15 +82,23 @@ describe('When the component fetches the user successfully', () => {
 });
 
 describe('When the user enters some text in the input element', () => {
-  test('should displaya the text in the screen', async () => {
+  test('should display the text in the screen using fireEvent function', async () => {
+    render(<App />);
+    await waitFor(() => expect(mockGetUser).toHaveBeenCalled());
+    screen.getByText(/You typed: .../);
+
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: 'Fabiano' },
+    });
+
+    screen.getByText(/You typed: Fabiano/);
+  });
+
+  test('should display the text in the screen using userEvent API', async () => {
     render(<App />);
     await waitFor(() => expect(mockGetUser).toHaveBeenCalled());
 
     screen.getByText(/You typed: .../);
-
-    // fireEvent.change(screen.getByRole('textbox'), {
-    //   target: { value: 'Fabiano' },
-    // });
 
     userEvent.type(screen.getByRole('textbox'), 'Fabiano');
 

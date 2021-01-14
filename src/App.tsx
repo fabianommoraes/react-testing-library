@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getUser, User } from './get-user';
 import Input from './Input';
+import { getUser, User } from './utils/get-user';
 
 const App: React.FC = () => {
   const [text, setText] = useState('');
