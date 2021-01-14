@@ -16,7 +16,7 @@ describe('When everthing is OK', () => {
 
   test('should render the App component without crashing', () => {
     // render(<App />); //using beforeEach
-    screen.debug();
+    // screen.debug();
   });
 
   test('should render Input label text and Input children', () => {
