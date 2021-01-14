@@ -18,9 +18,20 @@ describe('When everthing is OK', () => {
     );
 
     fireEvent.change(screen.getByRole('textbox'), {
-      target: { value: 'David' },
+      target: { value: 'Moraes' },
     });
 
     expect(onChange).toHaveBeenCalledTimes(1);
+  });
+
+  test('should  call the onChange callback handler when using the userEvent API', () => {
+    const onChange = jest.fn();
+    render(
+      <Input value="" onChange={onChange}>
+        Input:
+      </Input>,
+    );
+    userEvent.type(screen.getByRole('textbox'), 'Moraes');
+    expect(onChange).toHaveBeenCalledTimes(6);
   });
 });
