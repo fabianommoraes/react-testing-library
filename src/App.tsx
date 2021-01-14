@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getUser, User } from './get-user';
+import Input from './Input';
 
 const App: React.FC = () => {
   const [text, setText] = useState('');
@@ -25,27 +26,6 @@ const App: React.FC = () => {
         Input:
       </Input>
       <p>You typed: {text || '...'}</p>
-    </div>
-  );
-};
-
-interface InputProps {
-  children: React.ReactNode;
-  value: string;
-  onChange(event: React.ChangeEvent<HTMLInputElement>): void;
-}
-
-const Input = ({ children, value, onChange }: InputProps) => {
-  return (
-    <div>
-      <label htmlFor="search">{children}</label>
-      <input
-        placeholder="Example"
-        id="search"
-        type="text"
-        value={value}
-        onChange={onChange}
-      />
     </div>
   );
 };
