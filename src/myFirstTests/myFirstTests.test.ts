@@ -1,4 +1,4 @@
-import { sumPositiveNumbers } from './example';
+import { sumPositiveNumbers } from './myFirstTests';
 
 describe('when the arguements passed are posivite numbers', () => {
   test('should return the right answer', () => {

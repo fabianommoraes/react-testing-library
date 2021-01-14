@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Input from './Input';
+import Input from './Input/Input';
 import { getUser, User } from './utils/get-user';
 
 const App: React.FC = () => {
