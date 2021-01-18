@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Input from './Input/Input';
+import Pokemon from './Pokemon/Pokemon';
 import { getUser, User } from './utils/get-user';
 
 const App: React.FC = () => {
@@ -26,6 +27,10 @@ const App: React.FC = () => {
         Input:
       </Input>
       <p>You typed: {text || '...'}</p>
+
+      <br />
+
+      <Pokemon />
     </div>
   );
 };
